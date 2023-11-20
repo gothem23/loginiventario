@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" src="estilosinv.css">
+  <title>Sistema de Inventario</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 2px solid black; /* Grosor y color del borde de la tabla */
+    }
+    th, td {
+      border: 1px solid black; /* Grosor y color del borde de las celdas */
+      padding: 10px; /* Espaciado dentro de las celdas */
+      text-align: left; /* Alineación del texto dentro de las celdas */
+    }
+    .modificar-section {
+      border: 2px solid black; /* Grosor y color del borde del recuadro */
+      padding: 10px; /* Espaciado dentro del recuadro */
+      text-align: center;
+    }
+    .icon {
+      margin-right: 5px;
+    }
+    h1 {
+      text-align: center; /* Alineación del texto en el centro */
+    }
+  </style>
+  <script>
+    let isEditable = false;
+
+    function toggleEditable() {
+      isEditable = !isEditable;
+      const nombreProducto = document.getElementById("nombreProducto");
+      const precio = document.getElementById("precio");
+      const cantidadUnidades = document.getElementById("cantidadUnidades");
+
+      nombreProducto.readOnly = !isEditable;
+      precio.readOnly = !isEditable;
+      cantidadUnidades.readOnly = !isEditable;
+
+      updateButtonText();
+    }
+
+    function updateButtonText() {
+      const modificarButton = document.getElementById("modificarButton");
+      const icon = document.getElementById("icon");
+      if (isEditable) {
+        modificarButton.innerText = "Bloquear";
+        icon.innerHTML = "&#9664;"; // Flecha izquierda
+      } else {
+        modificarButton.innerText = "Desbloquear";
+        icon.innerHTML = "&#9658;"; // Flecha derecha
+      }
+    }
+
+    function cambiarEstado() {
+      if (isEditable) {
+        toggleEditable();
+      }
+    }
+
+    function cambiarImagen() {
+      // Pedimos al usuario que seleccione una imagen
+      const nuevaImagen = prompt("Por favor, ingrese la URL de la nueva imagen:");
+
+      // Si se proporciona una URL de imagen válida, la establecemos como src de la imagen actual
+      if (nuevaImagen) {
+        const imagen = document.getElementById("imagenProducto");
+        imagen.src = nuevaImagen;
+      }
+    }
+  </script>
+</head>
+<body>
+<!--login de usuario-->
+<body>
+
+  <div class="login-container" id="loginContainer">
+    <h2>Iniciar Sesión</h2>
+    <form id="loginForm">
+      <div class="input-group">
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div class="input-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  </div>
+  <p>Contenido después de in...</p>
+  <div id="mainContent" style="display: none;">
+    <!-- Tu contenido principal aquí -->
+    <h1>Bienvenido</h1>
+
+  
+
+  <script src="log.js"></script> <!-- Enlaza tu archivo JavaScript -->
+</body>
+<!-------------------->
+<h1>Sistema de Inventario</h1>
+
+<table>
+  <thead>
+    <tr >
+      <th >Imagen del Producto</th>
+      <th>Nombre del Producto</th>
+      <th>Precio</th>
+      <th>Cantidad de Unidades</th>
+      <th align="center">Modificar</th> <!-- Nueva columna -->
+    </tr>
+  </thead>
+  <tbody id="inventory-table">
+    <tr>
+      <td style="position: relative;">
+        <img src="C:\Users\gothe\OneDrive\Escritorio\invet\1.jpg" alt="Imagen del Producto" width="100" height="100" id="imagenProducto">
+        <button onclick="cambiarImagen()" style="position: absolute; bottom: 10px; left: 10px;">Cambiar</button>
+      </td>
+      <td><input type="text" id="nombreProducto" value="Nombre del Producto" readonly></td>
+      <td><input type="text" id="precio" value="100.00" readonly></td>
+      <td><input type="text" id="cantidadUnidades" value="10" readonly></td>
+      <td class="modificar-section">
+        <button id="modificarButton" onclick="toggleEditable(); cambiarEstado()">Desbloquear<span id="icon" class="icon">&#9658;</span></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>
