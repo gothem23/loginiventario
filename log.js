@@ -9,7 +9,7 @@ loginForm.addEventListener('submit', function(event) {
   const password = document.getElementById('password').value;
   
   // Aquí deberías realizar la lógica de autenticación, por ejemplo, verificar las credenciales con una base de datos o servicio
-  const isAuthenticated = (username === 'usuario' && password === 'contraseña'); // Ejemplo de autenticación
+  const isAuthenticated = (username === 'user' && password === 'password'); // Ejemplo de autenticación
   
   if (isAuthenticated) {
     loginContainer.style.display = 'none'; // Oculta el formulario de inicio de sesión
