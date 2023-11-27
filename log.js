@@ -1,20 +1,45 @@
-const loginForm = document.getElementById('loginForm');
-const loginContainer = document.getElementById('loginContainer');
-const mainContent = document.getElementById('mainContent');
+let isEditable = false;
 
-loginForm.addEventListener('submit', function(event) {
-  event.preventDefault(); // Evita que el formulario se envíe
-  
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  
-  // Aquí deberías realizar la lógica de autenticación, por ejemplo, verificar las credenciales con una base de datos o servicio
-  const isAuthenticated = (username === 'user' && password === 'password'); // Ejemplo de autenticación
-  
-  if (isAuthenticated) {
-    loginContainer.style.display = 'none'; // Oculta el formulario de inicio de sesión
-    mainContent.style.display = 'block'; // Muestra el contenido principal
-  } else {
-    alert('Credenciales incorrectas. Inténtalo de nuevo.'); // Mensaje de error (puedes cambiarlo por tu propia lógica)
+function toggleEditable(row) {
+  const nombreProducto = row.querySelector(".nombreProducto");
+  const precio = row.querySelector(".precio");
+  const cantidadUnidades = row.querySelector(".cantidadUnidades");
+
+  isEditable = !isEditable;
+
+  nombreProducto.readOnly = !isEditable;
+  precio.readOnly = !isEditable;
+  cantidadUnidades.readOnly = !isEditable;
+
+  updateButtonText(row);
+}
+
+
+function cambiarImagen() {
+  // Código para cambiar la imagen (sin cambios)
+}
+
+function toggleEditableForAll() {
+  const tableRows = document.querySelectorAll("#inventory-table tbody tr");
+  tableRows.forEach(row => {
+    row.querySelector(".modificarButton").onclick = function() {
+      toggleEditable(row);
+    };
+  });
+}
+
+function agregarFila() {
+  const tableBody = document.getElementById("inventory-table");
+  const firstRow = tableBody.getElementsByTagName("tr")[0].cloneNode(true);
+
+  tableBody.appendChild(firstRow);
+  toggleEditableForAll();
+}
+
+function eliminarFila() {
+  const tableBody = document.getElementById("inventory-table");
+  const rowCount = tableBody.getElementsByTagName("tr").length;
+  if (rowCount > 1) {
+    tableBody.removeChild(tableBody.lastChild);
   }
-});
+}
