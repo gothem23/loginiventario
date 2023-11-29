@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Lista de Productos</title>
+  <title>Formulario de Productos</title>
 </head>
 <body>
-
-<h1>Lista de Productos</h1>
-<!--conexion con php-->
-<form action="procesar.php" method="POST">
-  <label for="nombre">Nombre:</label>
-  <input type="text" id="nombre" name="nombre">
-  <input type="submit" value="Enviar">
-</form>
-<!--separacion tabla-->
-<table border="1">
+  <table border="3">
+  <h1>Formulario de Productos</h1>
   <tr>
-    <th>ID</th>
-    <th>IMAGEN DE PRODUCTO</th>
-    <th>MARCA</th>
-    <th>NOMBRE DEL PRODUCTO</th>
-    <th>PRECIO</th>
-    <th>CANT. DE UNIDADES</th>
-  </tr>
+    <td>
+    <form action="database.php" method="POST" enctype="multipart/form-data">
+    <input type="submit" value="Guardar Producto">
+    </td>
+    <td>
+    <label for="marca">Marca:</label>
+    <input type="text" id="marca" name="marca">
+    </td>
+    <td>
+    <label for="nombre">Nombre del Producto:</label>
+    <input type="text" id="nombre" name="nombre">
+    </td>
+    <td>
+    <label for="precio">Precio:</label>
+    <input type="number" id="precio" name="precio">
+    </td>
+    <td>
+    <label for="cantidad">Cantidad de Unidades:</label>
+    <input type="number" id="cantidad" name="cantidad">
+    </td>
+    <td>
+    <label for="imagen">Imagen del Producto:</label>
+    <input type="file" id="imagen" name="imagen">
+    </td>
+  </form>
+</tr>
 </table>
-
 </body>
 </html>
